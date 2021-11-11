@@ -25,7 +25,7 @@ func newAdhocCmd(cfg *config.Adhoc) *cobra.Command {
 				return cli.StartServer(ctx, cfg.Server)
 			})
 			g.Go(func() error {
-				return exec.Cli(cfg.Exec, args)
+				return exec.Cli(exec.NewConfig(cfg.Exec), args)
 			})
 			return g.Wait()
 		}),
